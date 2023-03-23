@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class playerHealth : MonoBehaviour //Explains what the file is
+{
+    //Variables - Always have a Type, Name and Value
+    public Slider slider;
+    public int health = 100;
+
+    //Function, called once, at the start
+    void Start()
+    {
+        //Get a value => set a value
+        slider.maxValue = health;
+        slider.value = health;
+    }
+    //When we enter a Trigger Collider
+    private void OnTriggerEnter(Collider other)
+    {//IF the parameter is true, run the code
+        if (other.CompareTag("whatIsEnemy"))
+        {
+            //health = health-10;
+            health -= 10;
+            slider.value = health;
+            if (health <= 0)
+            {
+                //Die, I guess
+                SceneManager.LoadScene("Skill development");
+            }
+        }
+       
+    }
+}
